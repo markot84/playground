@@ -15,8 +15,8 @@ services:
 
   letsencrypt-nginx-proxy-companion:
     image: jrcs/letsencrypt-nginx-proxy-companion
-    depends_on:
-      - nginx-proxy
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
     volumes:
       - certs:/etc/nginx/certs:rw
       - vhost:/etc/nginx/vhost.d
