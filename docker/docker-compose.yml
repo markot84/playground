@@ -10,3 +10,12 @@ services:
             - 8080:80
         volumes:
             - ../src/web:/usr/share/nginx/html
+        environment:
+            VIRTUAL_HOST: mk-lab.eu
+            LETSENCRYPT_HOST: mk-lab.eu
+            LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
+
+networks:
+    default:
+        external:
+        name: nginx-proxy
