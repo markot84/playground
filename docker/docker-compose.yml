@@ -6,8 +6,6 @@ services:
         container_name: web
         hostname: web
         restart: unless-stopped
-        ports:
-            - 8080:80
         volumes:
             - ../src/web:/usr/share/nginx/html
         environment:
