@@ -24,7 +24,12 @@ services:
         - html:/usr/share/nginx/html
         - /var/run/docker.sock:/var/run/docker.sock:ro
 
+volumes: 
+    certs:
+    html:
+    vhostd:
+
 networks:
-  default:
-    external:
-      name: nginx-proxy
+    nginx-proxy:
+        external:
+            name: nginx-proxy
