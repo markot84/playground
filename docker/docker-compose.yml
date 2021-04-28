@@ -16,6 +16,6 @@ services:
             LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
 
 networks:
-    default:
+    nginx-proxy:
         external:
-        name: nginx-proxy
+            name: nginx-proxy
