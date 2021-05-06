@@ -38,6 +38,7 @@ services:
   api-postgres:
     image: postgres:13.2
     container_name: api-postgres
+    hostname: api-postgres
     restart: always
     ports:
       - "5432:5432"
