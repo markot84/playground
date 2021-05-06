@@ -17,7 +17,6 @@ services:
       LETSENCRYPT_HOST: mk-lab.eu
       LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
     networks:
-      - network
       - nginx-proxy
   api:
     build: ./api
@@ -35,7 +34,6 @@ services:
       LETSENCRYPT_HOST: api.mk-lab.eu
       LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
     networks:
-      - network
       - nginx-proxy
   api-postgres:
     image: postgres:13.2
@@ -60,6 +58,3 @@ networks:
   nginx-proxy:
     external:
       name: nginx-proxy
-  network:
-    external:
-      name: network
