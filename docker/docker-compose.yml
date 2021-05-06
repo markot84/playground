@@ -16,8 +16,48 @@ services:
             VIRTUAL_HOST: mk-lab.eu
             LETSENCRYPT_HOST: mk-lab.eu
             LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
+        networks:
+            - network
+    api:
+        build: ./api
+        container_name: api
+        hostname: api
+        restart: unless-stopped
+        ports:
+            - "8081:80"
+        volumes:
+            - type: bind
+            source: ../src/api
+            target: /var/www/html
+        environment:
+            VIRTUAL_HOST: api.mk-lab.eu
+            LETSENCRYPT_HOST: api.mk-lab.eu
+            LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
+        networks:
+            - network
+    aqhub-business-api-postgres:
+        image: postgres:13.2
+        container_name: api-postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: api
+            POSTGRES_USER: markot84
+            POSTGRES_PASSWORD: mk567666
+        volumes:
+            - type: volume
+            source: api-postgres-data
+            target: /var/lib/postgresql/data
+
+volumes:
+    api-postgres-data:
+        name: api-postgres-data
 
 networks:
     default:
         external:
             name: nginx-proxy
+    network:
+        external:
+            name: network
