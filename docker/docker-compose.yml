@@ -56,6 +56,9 @@ volumes:
     name: api-postgres-data
 
 networks:
+  default:
+    external:
+      name: network
   nginx-proxy:
     external:
       name: nginx-proxy
