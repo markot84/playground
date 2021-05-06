@@ -18,6 +18,7 @@ services:
       LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
     networks:
       - network
+      - nginx-proxy
   api:
     build: ./api
     container_name: api
@@ -35,6 +36,7 @@ services:
       LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
     networks:
       - network
+      - nginx-proxy
   api-postgres:
     image: postgres:13.2
     container_name: api-postgres
@@ -55,7 +57,7 @@ volumes:
     name: api-postgres-data
 
 networks:
-  default:
+  nginx-proxy:
     external:
       name: nginx-proxy
   network:
