@@ -18,6 +18,7 @@ services:
       LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
     networks:
       - nginx-proxy
+      - app-net
   api:
     build: ./api
     container_name: api
@@ -35,6 +36,7 @@ services:
       LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
     networks:
       - nginx-proxy
+      - app-net
   api-postgres:
     image: postgres:13.2
     container_name: api-postgres
@@ -50,15 +52,17 @@ services:
       - type: volume
         source: api-postgres-data
         target: /var/lib/postgresql/data
+    networks:
+      - app-net
 
 volumes:
   api-postgres-data:
     name: api-postgres-data
 
 networks:
-  default:
+  app-net:
     external:
-      name: network
+      name: app-net
   nginx-proxy:
     external:
       name: nginx-proxy
