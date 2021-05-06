@@ -35,7 +35,7 @@ services:
             LETSENCRYPT_EMAIL: kotoulas.marios@gmail.com
         networks:
             - network
-    aqhub-business-api-postgres:
+    api-postgres:
         image: postgres:13.2
         container_name: api-postgres
         restart: always
